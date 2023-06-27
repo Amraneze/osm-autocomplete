@@ -1,0 +1,117 @@
+.autocomplete {
+  display: flex;
+  width: 25.5rem;
+  color: #474D43;
+  flex-direction: column;
+}
+
+.autocomplete-form {
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  background-color: #FFF;
+  padding: 0.25rem 0.5rem;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.autocomplete-input-wrapper {
+  flex: 1;
+  cursor: text;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 0.5rem;
+}
+
+.autocomplete-input-wrapper input {
+  border: 0;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  height: 1.4375em;
+  padding-top: 4px;
+  padding-bottom: 5px;
+}
+
+.autocomplete-input-wrapper input:focus {
+  outline: 0;
+}
+
+.autocomplete-divider {
+  height: 2em;
+  margin: 0.25rem;
+  border-width: 0;
+  border-color: #959D99;
+  border-right-width: thin;
+}
+
+.autocomplete-button {
+  border: 0;
+  cursor: pointer;
+  color: #959D99;
+  padding: 0.625rem;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  display: inline-flex;
+  background-color: transparent;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.autocomplete-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-button svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.autocomplete-list-wrapper {
+  display: none;
+  color: inherit;
+  border-radius: 4px;
+  background-color: #FFF;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.autocomplete-list-wrapper.active {
+  display: block;
+}
+
+.autocomplete-list-wrapper ul {
+  margin: 0px;
+  overflow: auto;
+  list-style: none;
+  max-height: 40em;
+  padding: 0.5rem 0px;
+}
+
+.autocomplete-list-wrapper li {
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0.375rem 1rem;
+}
+
+.autocomplete-list-wrapper li.selected {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.autocomplete-options::-webkit-scrollbar {
+  width: 7px;
+}
+
+.autocomplete-options::-webkit-scrollbar-track {
+  background: #F1F1F1;
+  border-radius: 25px;
+}
+
+.autocomplete-options::-webkit-scrollbar-thumb {
+  background: #CCC;
+  border-radius: 25px;
+}
+
+.autocomplete-options::-webkit-scrollbar-thumb:hover {
+  background: #B3B3B3;
+}

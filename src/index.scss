@@ -1,0 +1,129 @@
+$white-color: #fff;
+$primary-color: #959d99;
+$scrollbar-thumb-color: #ccc;
+$scrollbar-track-color: #f1f1f1;
+$scrollbar-thumb-hover-color: #b3b3b3;
+$selected-option-color: rgba(0, 0, 0, 0.1);
+$transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+$box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+.autocomplete {
+  display: flex;
+  width: 25.5rem;
+  color: #474d43;
+  flex-direction: column;
+
+  .autocomplete-form {
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    background-color: $white-color;
+    padding: 0.25rem 0.5rem;
+    transition: $transition;
+    box-shadow: $box-shadow;
+  }
+
+  .autocomplete-input-wrapper {
+    flex: 1;
+    cursor: text;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: 0.5rem;
+
+    input {
+      border: 0;
+      width: 100%;
+      font: inherit;
+      color: inherit;
+      height: 1.4375em;
+      padding-top: 4px;
+      padding-bottom: 5px;
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  .autocomplete-divider {
+    height: 2em;
+    margin: 0.25rem;
+    border-width: 0;
+    border-right-width: thin;
+    border-color: $primary-color;
+  }
+
+  .autocomplete-button {
+    border: 0;
+    cursor: pointer;
+    padding: 0.625rem;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    display: inline-flex;
+    color: $primary-color;
+    background-color: transparent;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    &:hover {
+        background-color: $selected-option-color;
+    }
+
+    svg {
+        width: 1em;
+        height: 1em;
+        fill: currentColor;
+    }
+  }
+
+  .autocomplete-list-wrapper {
+    display: none;
+    color: inherit;
+    border-radius: 4px;
+    background-color: $white-color;
+    transition: $transition;
+    box-shadow: $box-shadow;
+
+    &.active {
+        display: block;
+    }
+
+    ul {
+        margin: 0px;
+        overflow: auto;
+        list-style: none;
+        max-height: 40em;
+        padding: 0.5rem 0px;
+
+        li {
+            cursor: pointer;
+            overflow: hidden;
+            padding: 0.375rem 1rem;
+
+            &.selected {
+                background: $selected-option-color;
+            }
+        }
+    }
+
+    .autocomplete-options {
+        &::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $scrollbar-track-color;
+            border-radius: 25px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $scrollbar-thumb-color;
+            border-radius: 25px;
+
+            &:hover {
+                background: $scrollbar-thumb-hover-color;
+            }
+        }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+#root {
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper > div {
+    margin-bottom: 2rem;
+}
