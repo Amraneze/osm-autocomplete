@@ -1,5 +1,5 @@
-import { CSSProperties } from "react";
-import "./index.scss";
+import { CSSProperties } from 'react';
+import './index.scss';
 interface OpenStreetMapAutocompleteStyle<T> {
     root: T;
     form: T;
@@ -33,5 +33,5 @@ export interface OpeenStreetMap {
     display_name: string;
     boundingbox: string[];
 }
-export declare const OpenStreetMapAutocomplete: ({ value, styles, classes, onChange, debounce, placeholder, noOptionName, openStreetMapUrl, }: Props) => import("react/jsx-runtime").JSX.Element;
+export declare function OpenStreetMapAutocomplete({ value, styles, classes, onChange, debounce, placeholder, noOptionName, openStreetMapUrl, }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

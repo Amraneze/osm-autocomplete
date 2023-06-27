@@ -34,6 +34,6 @@ interface OpeenStreetMap {
     display_name: string;
     boundingbox: string[];
 }
-declare const OpenStreetMapAutocomplete: ({ value, styles, classes, onChange, debounce, placeholder, noOptionName, openStreetMapUrl, }: Props) => react_jsx_runtime.JSX.Element;
+declare function OpenStreetMapAutocomplete({ value, styles, classes, onChange, debounce, placeholder, noOptionName, openStreetMapUrl, }: Props): react_jsx_runtime.JSX.Element;
 
 export { OpeenStreetMap, OpenStreetMapAutocomplete };
