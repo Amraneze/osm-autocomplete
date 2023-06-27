@@ -1,7 +1,24 @@
-import { useState, useEffect, KeyboardEvent, useRef } from 'react';
+import {
+  useState,
+  useEffect,
+  KeyboardEvent,
+  useRef,
+  CSSProperties,
+} from "react";
 
-import './index.scss';
-import { useDebounce } from '@hooks';
+import "./index.scss";
+import { useDebounce } from "@hooks";
+
+interface OpenStreetMapAutocompleteStyle<T> {
+  root: T;
+  form: T;
+  inputWrapper: T;
+  input: T;
+  divider: T;
+  button: T;
+  listWrapper: T;
+  options: T;
+}
 
 interface Props {
   debounce?: number;
@@ -9,6 +26,8 @@ interface Props {
   noOptionName?: string;
   openStreetMapUrl?: string;
   value: OpeenStreetMap | null;
+  classes?: OpenStreetMapAutocompleteStyle<string>;
+  styles?: OpenStreetMapAutocompleteStyle<CSSProperties>;
   onChange: (location: OpeenStreetMap | null) => void;
 }
 
@@ -27,36 +46,38 @@ export interface OpeenStreetMap {
 }
 
 const DEFAULT_OPTION = {
-  lat: '0',
-  lon: '0',
-  type: '0',
-  class: '0',
+  lat: "0",
+  lon: "0",
+  type: "0",
+  class: "0",
   osm_id: 0,
-  licence: '0',
-  osm_type: '0',
+  licence: "0",
+  osm_type: "0",
   place_id: 0,
   importance: 0,
-  display_name: '',
+  display_name: "",
   boundingbox: [],
 };
 
 export const OpenStreetMapAutocomplete = ({
   value,
+  styles,
+  classes,
   onChange,
   debounce = 500,
-  placeholder = 'Search',
-  noOptionName = 'No locations found',
-  openStreetMapUrl = 'https://nominatim.openstreetmap.org'
+  placeholder = "Search",
+  noOptionName = "No locations found",
+  openStreetMapUrl = "https://nominatim.openstreetmap.org",
 }: Props) => {
   const [isActive, setActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const debouncedValue = useDebounce<string>(inputValue, debounce);
   const [options, setOptions] = useState<OpeenStreetMap[]>([]);
   const [selectedOption, setSelectedOption] = useState<OpeenStreetMap | null>(
     null
   );
-  
+
   useEffect(() => {
     if (value) {
       if (inputRef.current) {
@@ -65,7 +86,7 @@ export const OpenStreetMapAutocomplete = ({
         inputRef.current.value = value.display_name;
       }
     }
-  }, [value])
+  }, [value]);
 
   useEffect(() => {
     if (debouncedValue) {
@@ -74,7 +95,7 @@ export const OpenStreetMapAutocomplete = ({
     }
   }, [debouncedValue]);
 
-  const getGeocoding = (address = '') => {
+  const getGeocoding = (address = "") => {
     if (!address) return;
     const url = `${openStreetMapUrl}/search?format=json&q=${address}`;
 
@@ -123,31 +144,57 @@ export const OpenStreetMapAutocomplete = ({
   };
 
   return (
-    <div className='autocomplete'>
-      <form className='autocomplete-form' onBlur={hideOptionsList}>
-        <div className='autocomplete-input-wrapper'>
+    <div
+      className={classes?.root ?? "autocomplete"}
+      style={{ ...(styles?.root ?? {}) }}
+    >
+      <form
+        className={classes?.form ?? "autocomplete-form"}
+        // onBlur={hideOptionsList}
+        style={{ ...(styles?.form ?? {}) }}
+      >
+        <div
+          className={classes?.inputWrapper ?? "autocomplete-input-wrapper"}
+          style={{ ...(styles?.inputWrapper ?? {}) }}
+        >
           <input
-            type='text'
+            type="text"
             ref={inputRef}
             placeholder={placeholder}
             onClick={displayOptionsList}
             onKeyUp={handleOnAutocomplete}
+            className={classes?.input ?? ""}
+            style={{ ...(styles?.input ?? {}) }}
           />
         </div>
-        <hr className='autocomplete-divider' role='none' />
+        <hr
+          className={classes?.divider ?? "autocomplete-divider"}
+          style={{ ...(styles?.divider ?? {}) }}
+          role="none"
+        />
         <button
           tabIndex={0}
-          type='button'
+          type="button"
           onClick={handleOnSearchClick}
-          className='autocomplete-button'
+          style={{ ...(styles?.button ?? {}) }}
+          className={classes?.button ?? "autocomplete-button"}
         >
           <svg>
-            <path d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path>
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
           </svg>
         </button>
       </form>
-      <div className={`autocomplete-list-wrapper ${isActive ? 'active' : ''}`}>
-        <ul className='autocomplete-options' role='presentation'>
+      <div
+        style={{ ...(styles?.listWrapper ?? {}) }}
+        className={`${classes?.listWrapper ?? "autocomplete-list-wrapper"} ${
+          isActive ? "active" : ""
+        }`}
+      >
+        <ul
+          style={{ ...(styles?.options ?? {}) }}
+          className={classes?.options ?? "autocomplete-options"}
+          role="presentation"
+        >
           {(options.length > 0
             ? options
             : [{ ...DEFAULT_OPTION, display_name: noOptionName }]
@@ -156,7 +203,7 @@ export const OpenStreetMapAutocomplete = ({
               key={`${option.osm_id}-${index}`}
               onClick={() => handleOnSelectOption(option)}
               className={
-                option.osm_id === selectedOption?.osm_id ? 'selected' : ''
+                option.osm_id === selectedOption?.osm_id ? "selected" : ""
               }
             >
               {option.display_name}

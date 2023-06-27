@@ -1,6 +1,6 @@
 {
   "name": "@amraneze/osm-autocomplete",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OpenStreetMap Autocomplete",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -11,7 +11,14 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "build:watch": "rollup -c -w"
+    "build:watch": "rollup -c -w",
+    "check-types": "tsc",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "prettier:fix": "yarn prettier --write .",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "repository": {
     "type": "git",
@@ -38,6 +45,8 @@
     "@types/node": "^20.3.2",
     "@types/react": "^18.2.12",
     "autoprefixer": "^10.4.14",
+    "husky": "^8.0.0",
+    "pinst": "^3.0.0",
     "postcss": "^8.4.24",
     "rollup": "^3.25.1",
     "rollup-plugin-dts": "^5.3.0",

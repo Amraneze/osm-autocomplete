@@ -36,9 +36,9 @@ ReactDOM.render(
 |       params      |      value      |             default value             |
 | :---------------: | :-------------: | :-----------------------------------: |
 | value             | OpeenStreetMap  | REQUIRED                              |
-| onChange          | string          | REQUIRED                              |
-| debounce          | function        | 500                                   |
-| placeholder       | function        | 'Search'                              |
+| onChange          | function        | REQUIRED                              |
+| debounce          | string          | 500                                   |
+| placeholder       | string          | 'Search'                              |
 | noOptionName      | string          | 'No locations found'                  |
 | openStreetMapUrl  | string          | 'https://nominatim.openstreetmap.org' |
 
@@ -71,37 +71,54 @@ On the root directory
 ```
 yarn link
 ```
+or
+```
+npm link
+```
 
 On the `example` directory
 ```
 yarn link osm-autocomplete
 ```
+or
+```
+npm link osm-autocomplete
+```
 
 And don't forget to build the project with:
 ```
-yarn rollup
+yarn build
+```
+or
+```
+npm build
 ```
 
 or if you want to keep watching the changes on the file
 
 ```
-yarn rollup:watch
+yarn build:watch
+```
+or
+```
+npm build:watch
 ```
 
 >Note: If you don't build the project, you will get the error `Can't resolve osm-autocomplete`
 
 ## Production Bundle
-
 ```
 yarn build
 ```
+or
+```
+npm build
+```
+
 
 #### TODO
 
 - [ ] Add tests
-- [ ] Improve Readme
 - [ ] Add templates for PR and Issues
-- [ ] Add CI/CD
-
 
 ### Follow me on Twitter: [@Amraneze](https://twitter.com/amraneze)

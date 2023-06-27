@@ -24,7 +24,7 @@ export default [
       },
     ],
     plugins: [
-      //uglify(),
+      uglify(),
       resolve(),
       commonjs(),
       typescript({

@@ -1,10 +1,23 @@
-import './index.scss';
+import { CSSProperties } from "react";
+import "./index.scss";
+interface OpenStreetMapAutocompleteStyle<T> {
+    root: T;
+    form: T;
+    inputWrapper: T;
+    input: T;
+    divider: T;
+    button: T;
+    listWrapper: T;
+    options: T;
+}
 interface Props {
     debounce?: number;
     placeholder?: string;
     noOptionName?: string;
     openStreetMapUrl?: string;
     value: OpeenStreetMap | null;
+    classes?: OpenStreetMapAutocompleteStyle<string>;
+    styles?: OpenStreetMapAutocompleteStyle<CSSProperties>;
     onChange: (location: OpeenStreetMap | null) => void;
 }
 export interface OpeenStreetMap {
@@ -20,5 +33,5 @@ export interface OpeenStreetMap {
     display_name: string;
     boundingbox: string[];
 }
-export declare const OpenStreetMapAutocomplete: ({ value, onChange, debounce, placeholder, noOptionName, openStreetMapUrl }: Props) => import("react/jsx-runtime").JSX.Element;
+export declare const OpenStreetMapAutocomplete: ({ value, styles, classes, onChange, debounce, placeholder, noOptionName, openStreetMapUrl, }: Props) => import("react/jsx-runtime").JSX.Element;
 export {};
