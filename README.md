@@ -15,7 +15,6 @@ yarn add @amraneze/osm-autocomplete
 ```
 
 ## How to use
-### With default button
 ```js
 import ReactDOM from 'react-dom';
 import { OpeenStreetMap, OpenStreetMapAutocomplete } from '@amraneze/osm-autocomplete';
@@ -30,60 +29,38 @@ ReactDOM.render(
 );
 ```
 
->Note: Here is a [sandbox](https://codesandbox.io/s/amraneze-react-instagram-login-gggjr) to play around.
-
-## onSuccess callback
-
-### Displaying OAuth using a popup
-> Note: The redirectUri needs to be the same url as the current url.
-
-### Displaying OAuth using a redirection
-
-If you want to use redirection you should change the prop `useRedirect` to true.
-Callback will return a code for use on your server to get a full access_token.
-If `implicitAuth` is set to `true` it will return the full access_token directly.
-
-## onFailure callback
-
-Callback will return an error object.
-
-|   property name   | value  |
-| :---------------: | :----: |
-|       error       | string |
-|   error_reason    | string |
-| error_description | string |
+>Note: Here is a [sandbox](https://codesandbox.io/s/osm-autocomplete-yt5mn8) to play around.
 
 ## Parameters
 
-|    params    |  value   |    default value     |
-| :----------: | :------: | :------------------: |
-|   clientId   |  string  |       REQUIRED       |
-|    scope     |  string  |     user_profile     |
-|  onSuccess   | function |       REQUIRED       |
-|  onFailure   | function |       REQUIRED       |
-| redirectUri  |  string  |          -           |
-|  buttonText  |  string  | Login with Instagram |
-|   cssClass   |  string  |          -           |
-|     tag      |  string  |        button        |
-|     type     |  string  |        button        |
-| implicitAuth | boolean  |        false         |
-| useRedirect  | boolean  |        false         |
-|    width     |  number  |         400          |
-|    height    |  number  |         800          |
+|       params      |      value      |             default value             |
+| :---------------: | :-------------: | :-----------------------------------: |
+| value             | OpeenStreetMap  | REQUIRED                              |
+| onChange          | string          | REQUIRED                              |
+| debounce          | function        | 500                                   |
+| placeholder       | function        | 'Search'                              |
+| noOptionName      | string          | 'No locations found'                  |
+| openStreetMapUrl  | string          | 'https://nominatim.openstreetmap.org' |
 
-Instagram API Docs: https://www.instagram.com/developer/
-
-You can now also pass child components such as icons into the button component.
+Where `OpeenStreetMap` is 
+````js
+interface OpeenStreetMap {
+  lat: string;
+  lon: string;
+  type: string;
+  class: string;
+  osm_id: number;
+  licence: string;
+  osm_type: string;
+  place_id: number;
+  importance: number;
+  display_name: string;
+  boundingbox: string[];
+}
+````
 
 ```js
-<InstagramLogin
-  clientId="CLIENT_ID"
-  onSuccess={responseInstagram}
-  onFailure={responseInstagram}
->
-  <FontAwesome name="instagram" />
-  <span> Login with Instagram</span>
-</InstagramLogin>
+<OpenStreetMapAutocomplete value={value} onChange={handleOnOptionSelected} />
 ```
 
 ## Running the project
@@ -124,6 +101,7 @@ yarn build
 - [ ] Add tests
 - [ ] Improve Readme
 - [ ] Add templates for PR and Issues
+- [ ] Add CI/CD
 
 
 ### Follow me on Twitter: [@Amraneze](https://twitter.com/amraneze)
