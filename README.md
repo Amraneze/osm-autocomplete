@@ -33,17 +33,19 @@ ReactDOM.render(
 
 ## Parameters
 
-|       params      |      value      |             default value             |
-| :---------------: | :-------------: | :-----------------------------------: |
-| value             | OpeenStreetMap  | REQUIRED                              |
-| onChange          | function        | REQUIRED                              |
-| debounce          | string          | 500                                   |
-| placeholder       | string          | 'Search'                              |
-| noOptionName      | string          | 'No locations found'                  |
-| openStreetMapUrl  | string          | 'https://nominatim.openstreetmap.org' |
+|       params      |                     value                     |             default value             |
+| :---------------: | :-------------------------------------------: | :-----------------------------------: |
+| value             | OpeenStreetMap                                | REQUIRED                              |
+| onChange          | function                                      | REQUIRED                              |
+| debounce          | string                                        | 500                                   |
+| placeholder       | string                                        | 'Search'                              |
+| noOptionName      | string                                        | 'No locations found'                  |
+| openStreetMapUrl  | string                                        | 'https://nominatim.openstreetmap.org' |
+| classes           | OpenStreetMapAutocompleteStyle<string>        | -                                     |
+| styles            | OpenStreetMapAutocompleteStyle<CSSProperties> | -                                     |
 
 Where `OpeenStreetMap` is 
-````js
+````typescript
 interface OpeenStreetMap {
   lat: string;
   lon: string;
@@ -59,7 +61,22 @@ interface OpeenStreetMap {
 }
 ````
 
-```js
+and
+
+````typescript
+interface OpenStreetMapAutocompleteStyle<T> {
+  root: T;
+  form: T;
+  inputWrapper: T;
+  input: T;
+  divider: T;
+  button: T;
+  listWrapper: T;
+  options: T;
+}
+````
+
+```typescript
 <OpenStreetMapAutocomplete value={value} onChange={handleOnOptionSelected} />
 ```
 

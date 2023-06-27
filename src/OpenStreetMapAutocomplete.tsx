@@ -150,7 +150,7 @@ export const OpenStreetMapAutocomplete = ({
     >
       <form
         className={classes?.form ?? "autocomplete-form"}
-        // onBlur={hideOptionsList}
+        onBlur={hideOptionsList}
         style={{ ...(styles?.form ?? {}) }}
       >
         <div

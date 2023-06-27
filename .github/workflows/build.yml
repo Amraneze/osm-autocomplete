@@ -34,6 +34,7 @@ jobs:
           git add .
           git commit -m 'ci: publish osm-autocomplete'
           git push
-      - run: Publish
+      - name: Publish
+        run: yarn npm publish --access public 
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
