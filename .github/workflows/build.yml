@@ -26,15 +26,7 @@ jobs:
         run: yarn lint
       - name: Build the project
         run: yarn build
-      - name: Upload a build artifact to main
-        if: ${{ contains(github.event.head_commit.message, 'bump version') }}
-        run: |
-          git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git config --local user.name "${GITHUB_ACTOR}"
-          git add .
-          git commit -m 'ci: publish osm-autocomplete'
-          git push
       - name: Publish
-        run: yarn npm publish --access public 
+        run: yarn publish --access public 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
