@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  github:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,6 +19,28 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://npm.pkg.github.com'
+          scope: '@amraneze'
+      - name: Install dependencies
+        run: yarn install
+      - name: Lint the project
+        run: yarn lint
+      - name: Build the project
+        run: yarn build
+      - name: Publish
+        run: yarn publish --access public 
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_GITHUB_TOKEN }}
+  npm:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
           scope: '@amraneze'
       - name: Install dependencies
         run: yarn install
