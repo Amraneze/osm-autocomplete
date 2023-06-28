@@ -100,7 +100,7 @@ $box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
             overflow: hidden;
             padding: 0.375rem 1rem;
 
-            &.selected {
+            &.selected, &:hover {
                 background: $selected-option-color;
             }
         }

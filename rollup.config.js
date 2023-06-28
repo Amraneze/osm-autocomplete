@@ -15,12 +15,10 @@ export default [
       {
         file: packageJson.main,
         format: "cjs",
-        sourcemap: true,
       },
       {
         format: "esm",
         file: packageJson.module,
-        sourcemap: true,
       },
     ],
     plugins: [
@@ -33,7 +31,6 @@ export default [
       postcss({
           plugins: [autoprefixer()],
           namedExports: true,
-          sourceMap: true,
           extract: false,
           autoModules: true,
           minimize: true,

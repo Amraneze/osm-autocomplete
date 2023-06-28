@@ -8,6 +8,9 @@ logs
 **/*.backup.*
 **/*.back.*
 
+### Build ###
+dist
+
 node_modules
 example/node_modules
 bower_components

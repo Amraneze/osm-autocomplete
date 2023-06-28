@@ -65,10 +65,34 @@ export function OpenStreetMapAutocomplete({
 }: Props) {
     const [isActive, setActive] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
     const [inputValue, setInputValue] = useState('');
     const debouncedValue = useDebounce<string>(inputValue, debounce);
     const [options, setOptions] = useState<OpeenStreetMap[]>([]);
     const [selectedOption, setSelectedOption] = useState<OpeenStreetMap | null>(null);
+
+    const displayOptionsList = () => {
+        setActive(true);
+    };
+
+    const hideOptionsList = () => {
+        setActive(false);
+    };
+
+    // A workaround to act as onBlur, using onBlur will dismiss
+    // the list before selecting an option
+    useEffect(() => {
+        function handleOnClickOutsideWrapper(event: MouseEvent) {
+            if (!wrapperRef.current?.contains(event?.target as Node)) {
+                hideOptionsList();
+            }
+        }
+        document.addEventListener('click', handleOnClickOutsideWrapper, true);
+
+        return () => {
+            document.removeEventListener('click', handleOnClickOutsideWrapper, true);
+        };
+    }, [wrapperRef]);
 
     useEffect(() => {
         if (value) {
@@ -79,14 +103,6 @@ export function OpenStreetMapAutocomplete({
             }
         }
     }, [value]);
-
-    const displayOptionsList = () => {
-        setActive(true);
-    };
-
-    const hideOptionsList = () => {
-        setActive(false);
-    };
 
     const getGeocoding = useCallback(
         (address = '') => {
@@ -138,12 +154,8 @@ export function OpenStreetMapAutocomplete({
     };
 
     return (
-        <div className={classes?.root ?? 'autocomplete'} style={{ ...(styles?.root ?? {}) }}>
-            <form
-                className={classes?.form ?? 'autocomplete-form'}
-                onBlur={hideOptionsList}
-                style={{ ...(styles?.form ?? {}) }}
-            >
+        <div ref={wrapperRef} className={classes?.root ?? 'autocomplete'} style={{ ...(styles?.root ?? {}) }}>
+            <form className={classes?.form ?? 'autocomplete-form'} style={{ ...(styles?.form ?? {}) }}>
                 <div
                     className={classes?.inputWrapper ?? 'autocomplete-input-wrapper'}
                     style={{ ...(styles?.inputWrapper ?? {}) }}
@@ -180,9 +192,9 @@ export function OpenStreetMapAutocomplete({
                 className={`${classes?.listWrapper ?? 'autocomplete-list-wrapper'} ${isActive ? 'active' : ''}`}
             >
                 <ul
+                    role="menu"
                     style={{ ...(styles?.options ?? {}) }}
                     className={classes?.options ?? 'autocomplete-options'}
-                    role="presentation"
                 >
                     {(options.length > 0 ? options : [{ ...DEFAULT_OPTION, display_name: noOptionName }]).map(
                         (option) => (
