@@ -1,6 +1,6 @@
 {
   "name": "@amraneze/osm-autocomplete",
-  "version": "0.0.6",
+  "version": "0.0.7-beta",
   "description": "OpenStreetMap Autocomplete",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

@@ -1,4 +1,9 @@
-[![npm version](https://badge.fury.io/js/%40amraneze%2Fosm-autocomplete.svg)](https://badge.fury.io/js/%40amraneze%2Fosm-autocomplete)
+![npm version](https://img.shields.io/npm/v/%40amraneze%2Fosm-autocomplete)
+![npm](https://img.shields.io/npm/dw/%40amraneze%2Fosm-autocomplete)
+![npm bundle size](https://img.shields.io/bundlephobia/min/%40amraneze%2Fosm-autocomplete)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40amraneze%2Fosm-autocomplete)
+![GitHub release (release name instead of tag name)](https://img.shields.io/github/v/release/amraneze/osm-autocomplete)
+[![build](https://github.com/Amraneze/osm-autocomplete/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Amraneze/osm-autocomplete/actions/workflows/build.yml)
 
 # React Autocomplete using OpenStreetMap
 
