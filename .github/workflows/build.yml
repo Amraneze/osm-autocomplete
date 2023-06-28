@@ -49,6 +49,6 @@ jobs:
       - name: Build the project
         run: yarn build
       - name: Publish
-        run: yarn publish --access public 
+        run: yarn publish --access public --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
