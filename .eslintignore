@@ -3,3 +3,4 @@ dist
 .babelrc
 webpack
 .eslintrc.js
+*.scss

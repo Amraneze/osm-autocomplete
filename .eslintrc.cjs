@@ -23,7 +23,7 @@ module.exports = {
     ecmaVersion: 12,
     files: ['*.ts', '*.tsx'],
     tsconfigRootDir: __dirname,
-    project: './tsconfig.json',
+    project: './tsconfig.json'
   },
   globals: {
     "localStorage": true,
