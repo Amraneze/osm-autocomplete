@@ -19,6 +19,7 @@ interface Props {
     placeholder?: string;
     noOptionName?: string;
     openStreetMapUrl?: string;
+    language?: string;
     value: OpeenStreetMap | null;
     classes?: OpenStreetMapAutocompleteStyle<string>;
     styles?: OpenStreetMapAutocompleteStyle<CSSProperties>;
@@ -62,6 +63,7 @@ export function OpenStreetMapAutocomplete({
     placeholder = 'Search',
     noOptionName = 'No locations found',
     openStreetMapUrl = 'https://nominatim.openstreetmap.org',
+    language = 'en',
 }: Props) {
     const [isActive, setActive] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -107,7 +109,7 @@ export function OpenStreetMapAutocomplete({
     const getGeocoding = useCallback(
         (address = '') => {
             if (!address) return;
-            const url = `${openStreetMapUrl}/search?format=json&q=${address}`;
+            const url = `${openStreetMapUrl}/search?format=json&accept-language=${language}&q=${address}`;
 
             fetch(url)
                 .then((response) => response.json())
@@ -123,7 +125,7 @@ export function OpenStreetMapAutocomplete({
                 )
                 .catch(() => setOptions([]));
         },
-        [openStreetMapUrl]
+        [openStreetMapUrl, language]
     );
 
     useEffect(() => {
